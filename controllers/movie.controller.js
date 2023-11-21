@@ -30,8 +30,11 @@ exports.createMovie = (req, res) => {
 exports.findByQuery = (req, res) => {
     const title = req.query.title;
 
-    var query = { title: title };
+    const rating = req.query.rating;
 
+    const checkValue = req.query.rating ?  req.query.rating : req.query.title;
+    var query = { title: title };
+     
     db.find(query)
         .then(data => {
             res.send(data);
@@ -63,6 +66,12 @@ exports.updateMovie = (req, res) => {
         });
 };
 
+
+exports.findAllMovies = (req,res)=>{
+    db.findAll().then(data=>{
+        
+    })
+}
 
 exports.deleteMovie = (req, res) => {
     const id = req.body.id;
